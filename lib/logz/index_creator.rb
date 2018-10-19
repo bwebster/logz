@@ -12,6 +12,18 @@ module Logz
       self.client = client
     end
 
+    DOCUMENT_MAPPINGS = {
+      properties: {
+        params: {
+          type: :nested,
+          properties: {
+            start: { type: :keyword },
+            end: { type: :keyword },
+          }
+        }
+      }
+    }
+
     def create(index)
       return if client.indices.exists?(index: index)
 
@@ -19,13 +31,7 @@ module Logz
         client.indices.create index: index,
                               body: {
                                 mappings: {
-                                  document: {
-                                    properties: {
-                                      params: {
-                                        type: :nested
-                                      }
-                                    }
-                                  }
+                                  document: DOCUMENT_MAPPINGS
                                 }
                               }
       end

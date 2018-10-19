@@ -39,7 +39,12 @@ module Logz
 
           show_progress "Indexing" do
             File.open("./503.tsv").each do |line|
-              client.index index: index, type: :document, body: build_document(line)
+              begin
+                body = build_document(line)
+                client.index index: index, type: :document, body: body
+              rescue StandardError => error
+                puts "!!! Failed to index: #{body}"
+              end
             end
           end
         ensure
