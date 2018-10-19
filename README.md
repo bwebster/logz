@@ -35,3 +35,11 @@ Browse your results via [Kibana](http://localhost:5601).
 
 ## ELK
 Read more at https://elk-docker.readthedocs.io/.
+
+After importing a small amount of data using `bundle exec rake index`, you can import
+a pre-configured dashboard to use.
+
+1. Go to [Kibana](http://localhost:5601)
+1. Click Management -> Saved Objects -> Import
+1. Drag `kibana/export.json` into your browser
+1. Enjoy!
