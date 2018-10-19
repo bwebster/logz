@@ -2,8 +2,7 @@
 
 require_relative "./lib/logz"
 
-INDEX = ENV.fetch("INDEX", "logs")
-DEBUG = ENV["DEBUG"].present?
+INDEX = ENV.fetch("INDEX_NAME")
 
 desc "Delete index '#{INDEX}'"
 task :delete do
@@ -19,3 +18,5 @@ desc "Download, parse, and index data to '#{INDEX}'"
 task index: [:create] do
   Logz::Parser.new.run INDEX
 end
+
+task default: :index

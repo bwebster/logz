@@ -28,7 +28,7 @@ docker-compose up -d
 
 Kick it off
 ```
-bundle exec rake index
+bundle exec rake
 ```
 
 Browse your results via [Kibana](http://localhost:5601).
